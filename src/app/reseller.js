@@ -36,7 +36,8 @@ class AppReseller extends MdElement {
         // }).then(console.log);
 
         const data= await Service.reseller({})
-        // .then(console.log);
+        // .then(data=>data)
+        // .catch(error=>error)
         // this.data={message:'OK'}
         this.data=data
     }
