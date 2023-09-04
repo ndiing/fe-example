@@ -1,0 +1,102 @@
+.md-bottom-sheet {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    pointer-events: none;
+    .md-bottom-sheet__container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        max-width: 640px;
+        margin: 72px 56px 0 56px;
+        border-radius: var(--md-sys-shape-corner-extra-large-top);
+        transform: translate3d(calc(-50% - 56px), 0, 0);
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        // right: 0;
+        z-index: 2;
+        background: var(--md-sys-color-surface-container);
+        color: var(--md-sys-color-on-surface-container);
+        box-shadow: var(--md-sys-elevation-level1);
+        pointer-events: all;
+        transition: all var(--md-sys-motion-duration-short4) cubic-bezier(var(--md-sys-motion-easing-standard));
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        padding: 24px;
+        gap: 0 16px;
+
+        + .md-bottom-sheet__body {
+            margin-top: 0;
+        }
+    }
+
+    &__icons {
+        display: inline-flex;
+        align-items: center;
+        gap: 0 24px;
+    }
+
+    // &__icon {
+    // }
+
+    &__label {
+        @extend .md-typography--headline-small;
+    }
+
+    &__spacer {
+        flex: 1;
+    }
+
+    &__body {
+        flex: 1;
+        overflow: auto;
+        padding: 0 24px;
+        margin: 24px 0;
+        @extend .md-typography--body-medium;
+
+        + .md-bottom-sheet__footer {
+            margin-top: -24px;
+        }
+    }
+
+    &__footer {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 24px;
+        gap: 0 8px;
+    }
+
+    .md-bottom-sheet__scrim {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+        background: var(--md-sys-color-scrim);
+        opacity: 40%;
+        pointer-events: all;
+    }
+
+    &:not(.md-bottom-sheet--open) {
+        .md-bottom-sheet__container {
+            // opacity: 0;
+            transform: translate3d(calc(-50% - 56px), 100%, 0);
+            pointer-events: none;
+        }
+
+        .md-bottom-sheet__scrim {
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+}

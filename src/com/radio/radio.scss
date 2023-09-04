@@ -1,0 +1,39 @@
+.md-radio {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    width: 24px;
+    height: 24px;
+    position: relative;
+
+    &__native {
+        appearance: none;
+        width: 48px;
+        height: 48px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 1;
+        transform: translate3d(-50%, -50%, 0);
+
+        &:checked {
+            + .md-radio__icon {
+                color: var(--md-sys-color-primary);
+
+                &::before {
+                    content: "radio_button_checked";
+                }
+            }
+        }
+    }
+
+    &__icon {
+        // color: var(--md-sys-color-on-surface-variant);
+        color: var(--md-sys-color-outline);
+
+        &::before {
+            content: "radio_button_unchecked";
+        }
+    }
+}

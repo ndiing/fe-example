@@ -1,0 +1,109 @@
+.md-dialog {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    pointer-events: none;
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        min-width: 280px;
+        max-width: 560px;
+        border-radius: var(--md-sys-shape-corner-extra-large);
+        transform: translate3d(-50%, -50%, 0) scale(1);
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 2;
+        background: var(--md-sys-color-surface-container);
+        color: var(--md-sys-color-on-surface-container);
+        box-shadow: var(--md-sys-elevation-level3);
+        pointer-events: all;
+        transition: all var(--md-sys-motion-duration-short4) cubic-bezier(var(--md-sys-motion-easing-standard));
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        padding: 24px;
+        gap: 0 16px;
+
+        + .md-dialog__body {
+            margin-top: 0;
+        }
+    }
+
+    &__icons {
+        display: inline-flex;
+        align-items: center;
+        gap: 0 24px;
+    }
+
+    // &__icon {
+    // }
+
+    &__label {
+        @extend .md-typography--headline-small;
+    }
+
+    &__spacer {
+        flex: 1;
+    }
+
+    &__body {
+        flex: 1;
+        overflow: auto;
+        padding: 0 24px;
+        margin: 24px 0;
+        @extend .md-typography--body-medium;
+
+        + .md-dialog__footer {
+            margin-top: -24px;
+        }
+    }
+
+    &__footer {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 24px;
+        gap: 0 8px;
+    }
+
+    &__scrim {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+        background: var(--md-sys-color-scrim);
+        opacity: 40%;
+        pointer-events: all;
+    }
+
+    &--full-screen {
+        .md-dialog__container {
+            min-width: 100%;
+            min-height: 100%;
+            max-width: 100%;
+            border-radius: 0;
+        }
+    }
+
+    &:not(.md-dialog--open) {
+        .md-dialog__container {
+            opacity: 0;
+            transform: translate3d(-50%, -50%, 0) scale(0.88);
+            pointer-events: none;
+        }
+
+        .md-dialog__scrim {
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+}

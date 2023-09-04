@@ -1,0 +1,28 @@
+.md-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    height: 32px;
+    padding: 0 12px;
+    gap: 0 8px;
+    border-radius: var(--md-sys-shape-corner-small);
+    box-shadow: inset 0 0 0 1px var(--md-sys-color-outline);
+
+    &__icon {
+        width: 18px;
+        height: 18px;
+        font-size: 18px;
+        margin-left: -4px;
+    }
+
+    &__label {
+        @extend .md-typography--label-large;
+    }
+
+    &[selected] {
+        background: var(--md-sys-color-secondary-container);
+        color: var(--md-sys-color-on-secondary-container);
+        box-shadow: none;
+    }
+}

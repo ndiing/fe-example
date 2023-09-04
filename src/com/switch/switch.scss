@@ -1,0 +1,86 @@
+.md-switch {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    width: 52px;
+    height: 32px;
+    position: relative;
+
+    &__native {
+        appearance: none;
+        width: 56px;
+        height: 56px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 1;
+        transform: translate3d(-50%, -50%, 0);
+
+        &:checked {
+            + .md-switch__track {
+                background: var(--md-sys-color-primary);
+                border-color: var(--md-sys-color-primary);
+
+                .md-switch__thumb {
+                    width: 24px;
+                    height: 24px;
+                    left: 22px;
+                    background: var(--md-sys-color-on-primary);
+                }
+            }
+        }
+
+        &:active {
+            + .md-switch__track {
+                .md-switch__thumb {
+                    width: 28px;
+                    height: 28px;
+                    left: 0;
+                }
+            }
+
+            &:checked {
+                + .md-switch__track {
+                    .md-switch__thumb {
+                        left: 20px;
+                    }
+                }
+            }
+        }
+    }
+
+    &__track {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        vertical-align: middle;
+        width: 52px;
+        height: 32px;
+        border-radius: var(--md-sys-shape-corner-full);
+        position: relative;
+        border: 2px solid var(--md-sys-color-outline);
+    }
+
+    &__thumb {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        vertical-align: middle;
+        width: 16px;
+        height: 16px;
+        border-radius: var(--md-sys-shape-corner-full);
+        position: absolute;
+        left: 6px;
+        background: var(--md-sys-color-outline);
+        transition: all var(--md-sys-motion-duration-short4) cubic-bezier(var(--md-sys-motion-easing-standard));
+
+        &.md-ripple {
+            --md-ripple-size: 40px !important;
+            --md-ripple-left: 50% !important;
+            --md-ripple-top: 50% !important;
+            --md-ripple-x: 0% !important;
+            --md-ripple-y: 0% !important;
+        }
+    }
+}

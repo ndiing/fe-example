@@ -1,0 +1,16 @@
+.md-card {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    border-radius: var(--md-sys-shape-corner-medium);
+}
+.md-card--elevated {
+    background: var(--md-sys-color-surface-container);
+    box-shadow: var(--md-sys-elevation-level1);
+}
+.md-card--filled {
+    background: var(--md-sys-color-surface-container);
+}
+.md-card--outlined {
+    box-shadow: inset 0 0 0 1px var(--md-sys-color-outline);
+}

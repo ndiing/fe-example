@@ -1,0 +1,9 @@
+.md-form{
+    display: flex;
+    flex-direction: column;
+
+    &__native{
+        display: flex;
+        flex-direction: column;
+    }
+}

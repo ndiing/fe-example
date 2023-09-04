@@ -1,0 +1,27 @@
+.md-top-app-bar {
+    display: flex;
+    align-items: center;
+    min-height: 64px;
+    padding: 0 16px;
+    gap: 0 16px;
+    background: var(--md-sys-color-surface-container);
+    color: var(--md-sys-color-on-surface-container);
+    // box-shadow: var(--md-sys-elevation-level2);
+
+    &__icons {
+        display: inline-flex;
+        align-items: center;
+        gap: 0 24px;
+    }
+
+    // &__icon {
+    // }
+
+    &__label {
+        @extend .md-typography--title-large;
+    }
+
+    &__spacer {
+        flex: 1;
+    }
+}
