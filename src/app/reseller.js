@@ -35,9 +35,9 @@ class AppReseller extends MdElement {
         //     password: "436857",
         // }).then(console.log);
 
-        const data= await Service.reseller({})
+        // const data= await Service.reseller({})
         // .then(console.log);
-        this.data=data
+        this.data={message:'OK'}
     }
 }
 
