@@ -4,76 +4,96 @@
 class Service {
     // Login
     static async signin(payload = {}) {
-        const req = await fetch("http://127.0.0.1/api/auth/signin", {
-            method: "POST",
-            headers: {
-                "content-type": "application/json",
-            },
-            body: JSON.stringify({
-                username: payload.username,// "+6281234567890",
-            }),
-        });
-        const res = await req.json();
-        return res;
+        try {
+            const req = await fetch("http://127.0.0.1/api/auth/signin", {
+                method: "POST",
+                headers: {
+                    "content-type": "application/json",
+                },
+                body: JSON.stringify({
+                    username: payload.username,// "+6281234567890",
+                }),
+            });
+            const res = await req.json();
+            return res;
+        } catch (error) {
+            return error
+        }
     }
     // Login
     static async challenge(payload = {}) {
-        const req = await fetch("http://127.0.0.1/api/auth/challenge", {
-            method: "POST",
-            headers: {
-                "content-type": "application/json",
-            },
-            body: JSON.stringify({
-                "username":payload.username,//"+6281234567890",
-                "password":payload.password,//"037939"
-            }),
-        });
-        const res = await req.json();
-        window.localStorage.setItem('access_token',res.data.access_token)
-        window.localStorage.setItem('refresh_token',res.data.refresh_token)
-        return res;
+        try {
+            const req = await fetch("http://127.0.0.1/api/auth/challenge", {
+                method: "POST",
+                headers: {
+                    "content-type": "application/json",
+                },
+                body: JSON.stringify({
+                    "username":payload.username,//"+6281234567890",
+                    "password":payload.password,//"037939"
+                }),
+            });
+            const res = await req.json();
+            window.localStorage.setItem('access_token',res.data.access_token)
+            window.localStorage.setItem('refresh_token',res.data.refresh_token)
+            return res;
+        } catch (error) {
+            return error
+        }
     }
 
     // @private Refresh
     static async refresh(payload = {}) {
-        const req = await fetch("http://127.0.0.1/api/auth/refresh", {
-            method: "GET",
-            headers: {
-                Authorization: "Bearer " + window.localStorage.getItem('refresh_token'),
-            },
-        });
-        const res = await req.json();
-        window.localStorage.setItem('access_token',res.data.access_token)
-        window.localStorage.setItem('refresh_token',res.data.refresh_token)
-        return res;
+        try {
+            const req = await fetch("http://127.0.0.1/api/auth/refresh", {
+                method: "GET",
+                headers: {
+                    Authorization: "Bearer " + window.localStorage.getItem('refresh_token'),
+                },
+            });
+            const res = await req.json();
+            window.localStorage.setItem('access_token',res.data.access_token)
+            window.localStorage.setItem('refresh_token',res.data.refresh_token)
+            return res;
+        } catch (error) {
+            return error
+        }
     }
 
     // @private Check
     static async check(payload = {}) {
-        const req = await fetch("http://127.0.0.1/api/otomax/reseller", {
-            method: "GET",
-            headers: {
-                Authorization: "Bearer " + window.localStorage.getItem('access_token'),
-            },
-        });
-        // refresh token
-        if(req.status===401){
-            await this.refresh()
+        try {
+            const req = await fetch("http://127.0.0.1/api/otomax/reseller", {
+                method: "GET",
+                headers: {
+                    Authorization: "Bearer " + window.localStorage.getItem('access_token'),
+                },
+            });
+            // refresh token
+            if(req.status===401){
+                await this.refresh()
+            }
+            // next
+        } catch (error) {
+            return error
         }
-        // next
     }
 
     static async reseller(payload = {}) {
-        await this.check()
-
-        const req = await fetch("http://127.0.0.1/api/otomax/reseller", {
-            method: "GET",
-            headers: {
-                Authorization: "Bearer " + window.localStorage.getItem('access_token'),
-            },
-        });
-        const res = await req.json()
-        return res
+        try {
+            await this.check()
+    
+            const req = await fetch("http://127.0.0.1/api/otomax/reseller", {
+                method: "GET",
+                headers: {
+                    Authorization: "Bearer " + window.localStorage.getItem('access_token'),
+                },
+            });
+            const res = await req.json()
+            return res
+        } catch (error) {
+            return error
+        }
     }
 }
 
